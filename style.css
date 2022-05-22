@@ -69,10 +69,37 @@ blockquote {
     flex-direction: column;
 }
 
+.flex-row .flex-column {
+    flex-direction: row;
+}
+
 blockquote#emperor-quote {
     margin-bottom: 1rem;
 }
 
 .if-false {
     display: none;
+}
+
+.section-tab {
+    background: #000;
+    color: green;
+    padding: .7rem;
+    margin-left: 0.4rem;
+    margin-bottom: 0.2rem;
+    border-top-style: solid;
+    border-top-color: green;
+    border-left-style: solid;
+    border-left-color: green;
+    border-right-style: solid;
+    border-right-color: green;
+}
+
+.section-tab.selected {
+    background-color: #004400;
+    font-weight: bolder;
+}
+
+#tabs-selector :first-child {
+    margin-left: 1rem;
 }

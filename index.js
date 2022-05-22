@@ -170,6 +170,10 @@ function registerTab(tabId, element) {
     }`;
 
     tabsSelector.innerHTML += `<button class="${classes}" onclick="tabOnClick('${tabId}');">${tabName}</button>`;
+
+    if (localStorage.getItem('last-tab') !== tabId) {
+        document.getElementById(tabId).classList.add('if-false');
+    }
 }
 
 function onSkillInputSearch() {
@@ -258,4 +262,5 @@ registerOnLoad('skills-list', (element) => {
 
 registerOnLoad('tab-skills-search', (element) => {
     element.addEventListener('input', onSkillInputSearch);
+    element.focus();
 });

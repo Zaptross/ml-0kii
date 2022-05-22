@@ -86,7 +86,6 @@ blockquote#emperor-quote {
     color: green;
     padding: .7rem;
     margin-left: 0.4rem;
-    margin-bottom: 0.2rem;
     border-top-style: solid;
     border-top-color: green;
     border-left-style: solid;
@@ -97,9 +96,30 @@ blockquote#emperor-quote {
 
 .section-tab.selected {
     background-color: #004400;
+    border-bottom-style: solid;
+    border-bottom-color: #004400;
     font-weight: bolder;
+}
+
+#tabs-selector {
+    border-bottom-style: solid;
+    margin-bottom: 0.4rem;
 }
 
 #tabs-selector :first-child {
     margin-left: 1rem;
+}
+
+input {
+    background: black;
+    color: green;
+    border-color: green;
+    border-style: solid;
+    border-width: thin;
+    padding: 0.2rem;
+    font-family: monospace;
+}
+
+button {
+    cursor: pointer;
 }

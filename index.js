@@ -105,22 +105,22 @@ const skills = {
         'You have spent so long practising weapons drills that you can reload a gun in an instant. All reload times are reduced by half (round down)—so a Half Action reload become a Free Action, a Full Action reload becomes a Half Action and so on.',
     'Binary Chatter':
         'You are adept at controlling servitors. Gain a +10 bonus to any attempt to instruct, program or question servitors.',
-    'Luminen Charge': `You have learnt how to lend your life force to technology. On a successful Toughness Test you may use your bio-electrical field to recharge or power machinery. This takes one minute of meditation and ritual incantation to activate. The Difficulty of the Toughness Test varies depending on the nature of the technology, as follows:
+    'Luminen Charge': `You have learnt how to lend your life force to technology.
+    On a successful Toughness Test you may use your bio-electrical field to recharge or power machinery.
+    This takes one minute of meditation and ritual incantation to activate.
+    Note that at the GM's discretion, some technology is simply too arcane, broken or power-hungry for you to be able to activate.
+    Each time you use this Talent, you gain a level of Fatigue.
+    The Difficulty of the Toughness Test varies depending on the nature of the technology, as follows:
         <table>
-        <thead>
-            <tr><th>Difficulty</th><th>Example</th></tr></thead>
+            <thead>
+                <tr><th>Difficulty</th><th>Example</th></tr>
+            </thead>
             <tr><td>Ordinary (+10)</td><td>Chemical battery, glow globe</td></tr>
             <tr><td>Challenging (+0)</td><td>Las gun charge pack, data-slate, personal heater</td></tr>
             <tr><td>Difficult (-10)</td><td>Overcharge pack, air conditioning unit, servoskull</td></tr>
             <tr><td>Hard (-20)</td><td>Land speeder engine, lascannon charge pack, servitor</td></tr>
             <tr><td>Very Hard (-30)</td><td>Industrial press, cogitator engine, xenos tech</td></tr>
-        </table>
-        Note that at the GM's discretion,
-        some technology is simply too
-        arcane, broken or power-hungry for
-        you to be able to activate. Each time
-        you use this Talent, you gain a level
-        of Fatigue.`,
+        </table>`,
 };
 
 function randomFrom(array, length = 1) {
@@ -164,21 +164,28 @@ function jsonToDivsRecursive(jsonObject, depth = 0) {
 
 function registerTab(tabId, element) {
     const tabsSelector = document.getElementById('tabs-selector');
-
     const tabName = tabId.replace('tab-', '').toUpperCase();
+    const classes = `section-tab ${
+        localStorage.getItem('last-tab') === tabId ? 'selected' : ''
+    }`;
 
-    tabsSelector.innerHTML += `<button class="section-tab" onclick="tabOnClick('${tabId}');">${tabName}</button>`;
-
-    if (localStorage.getItem('last-tab') !== tabId) {
-        element.classList.add('if-false');
-    } else {
-        element.classList.add('selected');
-    }
+    tabsSelector.innerHTML += `<button class="${classes}" onclick="tabOnClick('${tabId}');">${tabName}</button>`;
 }
 
 function onSkillInputSearch() {
     const input = document.getElementById('tab-skills-search');
-    const tabsContainer = document.getElementById('tabs-container');
+    const skillList = document.getElementById('skills-list');
+
+    const search = input.value.toLowerCase();
+    const incl = (text) => text.toLowerCase().includes(search.toLowerCase());
+
+    for (const item of skillList.children) {
+        if (incl(item.innerHTML)) {
+            item.classList.remove('if-false');
+        } else {
+            item.classList.add('if-false');
+        }
+    }
 }
 
 function tabOnClick(tabId) {
@@ -249,4 +256,6 @@ registerOnLoad('skills-list', (element) => {
     }
 });
 
-registerOnLoad('lowest-element', () => {});
+registerOnLoad('tab-skills-search', (element) => {
+    element.addEventListener('input', onSkillInputSearch);
+});

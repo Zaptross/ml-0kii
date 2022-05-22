@@ -72,3 +72,7 @@ blockquote {
 blockquote#emperor-quote {
     margin-bottom: 1rem;
 }
+
+.if-false {
+    display: none;
+}

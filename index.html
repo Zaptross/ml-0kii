@@ -25,18 +25,24 @@
         </div>
         <blockquote id="quote">quote</blockquote>
         <h1 id="file">filename</h1>
-        <div class="flex-row">
-            <code id="character" class="column-half">
-                for (let i = 0; i < 10; i++) { console.log(i); }
-            </code>
-            <p id="character-notes" class="column-half">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
+        <div id="tabs-selector"></div>
+        <div id="tabs-container">
+            <div class="flex-row" id="tab-background">
+                <code id="character" class="column-half">
+                    for (let i = 0; i < 10; i++) { console.log(i); }
+                </code>
+                <p id="character-notes" class="column-half">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+            </div>
+            <div class="flex-row" id="tab-skills">
+                <ul id="skills-list"></ul>
+            </div>
         </div>
         <div class="align-center-bottom">
             <blockquote id="emperor-quote">In the Emperor we trust.</blockquote>
         </div>
-        <div class="align-center-bottom">
+        <div id="lowest-element" class="align-center-bottom">
             <div>
                 <img
                     src="assets/imperial-aquila.svg"

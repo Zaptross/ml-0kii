@@ -93,6 +93,32 @@ const quotes = [
         'Judge Traggat',
     ],
 ];
+
+const skills = {
+    'Technical Knock':
+        'With a honeyed whisper and ritual motion, you can awaken sleeping gun-spirits into furious action once more. You may unjam any gun as a Half Action. You must touch the gun in question to enact this rite. You may only perform this rite on one weapon per Round—any more would be disrespectful',
+    'Rapid Reload':
+        'You have spent so long practising weapons drills that you can reload a gun in an instant. All reload times are reduced by half (round down)—so a Half Action reload become a Free Action, a Full Action reload becomes a Half Action and so on.',
+    'Binary Chatter':
+        'You are adept at controlling servitors. Gain a +10 bonus to any attempt to instruct, program or question servitors.',
+    'Luminen Charge': `You have learnt how to lend your life force to technology. On a successful Toughness Test you may use your bio-electrical field to recharge or power machinery. This takes one minute of meditation and ritual incantation to activate. The Difficulty of the Toughness Test varies depending on the nature of the technology, as follows:
+        <table>
+        <thead>
+            <tr><th>Difficulty</th><th>Example</th></tr></thead>
+            <tr><td>Ordinary (+10)</td><td>Chemical battery, glow globe</td></tr>
+            <tr><td>Challenging (+0)</td><td>Las gun charge pack, data-slate, personal heater</td></tr>
+            <tr><td>Difficult (-10)</td><td>Overcharge pack, air conditioning unit, servoskull</td></tr>
+            <tr><td>Hard (-20)</td><td>Land speeder engine, lascannon charge pack, servitor</td></tr>
+            <tr><td>Very Hard (-30)</td><td>Industrial press, cogitator engine, xenos tech</td></tr>
+        </table>
+        Note that at the GM's discretion,
+        some technology is simply too
+        arcane, broken or power-hungry for
+        you to be able to activate. Each time
+        you use this Talent, you gain a level
+        of Fatigue.`,
+};
+
 function randomFrom(array, length = 1) {
     const out = Array(length).fill(null);
 
@@ -132,6 +158,19 @@ function jsonToDivsRecursive(jsonObject, depth = 0) {
     return divs.join('\r\n');
 }
 
+function registerTab(tabId) {
+    const tabsSelector = document.getElementById('tabs-selector');
+
+    const tabName = tabId.replace('tab-', '').toUpperCase();
+
+    tabsSelector.innerHTML += `<button onclick="tabOnClick(${tabId});">${tabName}</button>`;
+}
+
+function tabOnClick(tabId) {
+    const tabsContainer = document.getElementById('tabs-container');
+    const tabsSelector = document.getElementById('tabs-selector');
+}
+
 registerOnLoad('character', (element) => {
     element.innerHTML = jsonToDivsRecursive(ML0KII);
 });
@@ -151,3 +190,33 @@ registerOnLoad('emperor-quote', (element) => {
 registerOnLoad('character-notes', (element) => {
     element.innerHTML = jsonToDivsRecursive(NOTES);
 });
+
+registerOnLoad('tab-skills', (element) => {
+    if (localStorage.getItem('last-tab') !== 'tab-skills') {
+        element.classList.add('if-false');
+    }
+});
+
+registerOnLoad('tab-background', (element) => {
+    if (localStorage.getItem('last-tab') !== 'tab-background') {
+        element.classList.add('if-false');
+    }
+});
+
+registerOnLoad('skills-list', (element) => {
+    for (const [name, description] of Object.entries(skills).sort((a, b) => {
+        const upperA = a[0].toUpperCase();
+        const upperB = b[0].toUpperCase();
+        if (upperA < upperB) {
+            return -1;
+        } else if (upperA > upperB) {
+            return 1;
+        } else {
+            return 0;
+        }
+    })) {
+        element.innerHTML += `<li><p><strong>${name}</strong></p><p>${description}</p></li>`;
+    }
+});
+
+registerOnLoad('lowest-element', () => {});

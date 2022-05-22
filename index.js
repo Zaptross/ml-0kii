@@ -1,3 +1,7 @@
+if (!localStorage.getItem('last-tab')) {
+    localStorage.setItem('last-tab', 'tab-background');
+}
+
 const intervals = {};
 const checkAllInterval = setInterval(checkAllWaitingIntervals, 5);
 
@@ -158,17 +162,47 @@ function jsonToDivsRecursive(jsonObject, depth = 0) {
     return divs.join('\r\n');
 }
 
-function registerTab(tabId) {
+function registerTab(tabId, element) {
     const tabsSelector = document.getElementById('tabs-selector');
 
     const tabName = tabId.replace('tab-', '').toUpperCase();
 
-    tabsSelector.innerHTML += `<button onclick="tabOnClick(${tabId});">${tabName}</button>`;
+    tabsSelector.innerHTML += `<button class="section-tab" onclick="tabOnClick('${tabId}');">${tabName}</button>`;
+
+    if (localStorage.getItem('last-tab') !== tabId) {
+        element.classList.add('if-false');
+    } else {
+        element.classList.add('selected');
+    }
+}
+
+function onSkillInputSearch() {
+    const input = document.getElementById('tab-skills-search');
+    const tabsContainer = document.getElementById('tabs-container');
 }
 
 function tabOnClick(tabId) {
+    localStorage.setItem('last-tab', tabId);
+
     const tabsContainer = document.getElementById('tabs-container');
     const tabsSelector = document.getElementById('tabs-selector');
+    const tabName = tabId.replace('tab-', '').toUpperCase();
+
+    for (const tab of tabsContainer.children) {
+        if (tab.id === tabId) {
+            tab.classList.remove('if-false');
+        } else {
+            tab.classList.add('if-false');
+        }
+    }
+
+    for (const tab of tabsSelector.children) {
+        if (tab.innerHTML === tabName) {
+            tab.classList.add('selected');
+        } else {
+            tab.classList.remove('selected');
+        }
+    }
 }
 
 registerOnLoad('character', (element) => {
@@ -191,16 +225,12 @@ registerOnLoad('character-notes', (element) => {
     element.innerHTML = jsonToDivsRecursive(NOTES);
 });
 
-registerOnLoad('tab-skills', (element) => {
-    if (localStorage.getItem('last-tab') !== 'tab-skills') {
-        element.classList.add('if-false');
-    }
+registerOnLoad('tab-background', (element) => {
+    registerTab('tab-background', element);
 });
 
-registerOnLoad('tab-background', (element) => {
-    if (localStorage.getItem('last-tab') !== 'tab-background') {
-        element.classList.add('if-false');
-    }
+registerOnLoad('tab-skills', (element) => {
+    registerTab('tab-skills', element);
 });
 
 registerOnLoad('skills-list', (element) => {

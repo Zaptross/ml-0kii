@@ -35,7 +35,11 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
             </div>
-            <div class="flex-row" id="tab-skills">
+            <div class="flex-column" id="tab-skills">
+                <div class="flex-row">
+                    <span>Search:</span>
+                    <input id="tab-skills-search" type="text" onchange="onSkillInputSearch()"></input>
+                </div>
                 <ul id="skills-list"></ul>
             </div>
         </div>

@@ -123,6 +123,65 @@ const skills = {
         </table>`,
 };
 
+const statsEnum = {
+    ws: 'Weapon Skill',
+    bs: 'Ballistic Skill',
+    str: 'Strength',
+    t: 'Toughness',
+    ag: 'Agility',
+    int: 'Intelligence',
+    per: 'Perception',
+    wp: 'Willpower',
+    fel: 'Fellowship',
+};
+
+let stats = {};
+
+const calcStat = (stat, skilled = 0, bonus10s = 0) =>
+    Math.floor((skilled ? 1 : 0.5) * stats.base[stat] + 10 * bonus10s);
+
+// Fill out stats object
+stats.base = {
+    [statsEnum.ws]: 34,
+    [statsEnum.bs]: 39,
+    [statsEnum.str]: 29,
+    [statsEnum.t]: 40,
+    [statsEnum.ag]: 32,
+    [statsEnum.int]: 37,
+    [statsEnum.per]: 39,
+    [statsEnum.wp]: 36,
+    [statsEnum.fel]: 25,
+};
+stats.skills = {
+    Awareness: calcStat(statsEnum.per, 0, 1),
+    Barter: calcStat(statsEnum.fel),
+    Carouse: calcStat(statsEnum.t),
+    Charm: calcStat(statsEnum.fel),
+    Climb: calcStat(statsEnum.str),
+    Concealment: calcStat(statsEnum.ag),
+    Contortionist: calcStat(statsEnum.ag),
+    Deceive: calcStat(statsEnum.fel),
+    Disguise: calcStat(statsEnum.fel),
+    Dodge: calcStat(statsEnum.ag),
+    Evaluate: calcStat(statsEnum.int),
+    Gamble: calcStat(statsEnum.int),
+    Inquiry: calcStat(statsEnum.fel),
+    Intimidate: calcStat(statsEnum.fel),
+    Logic: calcStat(statsEnum.int, 1, 1),
+    Scrutiny: calcStat(statsEnum.per, 0, 1),
+    Search: calcStat(statsEnum.per, 0, 1),
+    'Silent Move': calcStat(statsEnum.ag),
+    Swim: calcStat(statsEnum.str),
+    Literacy: calcStat(statsEnum.int),
+    'Speak Language (Low Gothic)': calcStat(statsEnum.fel, 1),
+    'Speak Language (Hive Dialect)': calcStat(statsEnum.fel, 1),
+    'Secret Tongue (Tech)': calcStat(statsEnum.int, 1),
+    'Trade (Scrimshawer)': calcStat(statsEnum.ag, 1),
+    'Common Lore (Machine Cult)': calcStat(statsEnum.int, 1),
+    'Common Lore (Tech)': calcStat(statsEnum.int, 1),
+    'Tech Use': calcStat(statsEnum.int, 1, 2),
+};
+
 function randomFrom(array, length = 1) {
     const out = Array(length).fill(null);
 
@@ -176,9 +235,9 @@ function registerTab(tabId, element) {
     }
 }
 
-function onSkillInputSearch() {
-    const input = document.getElementById('tab-skills-search');
-    const skillList = document.getElementById('skills-list');
+const onInputSearch = (inputId, listId) => () => {
+    const input = document.getElementById(inputId);
+    const skillList = document.getElementById(listId);
 
     const search = input.value.toLowerCase();
     const incl = (text) => text.toLowerCase().includes(search.toLowerCase());
@@ -190,7 +249,7 @@ function onSkillInputSearch() {
             item.classList.add('if-false');
         }
     }
-}
+};
 
 function tabOnClick(tabId) {
     localStorage.setItem('last-tab', tabId);
@@ -261,6 +320,40 @@ registerOnLoad('skills-list', (element) => {
 });
 
 registerOnLoad('tab-skills-search', (element) => {
-    element.addEventListener('input', onSkillInputSearch);
+    element.addEventListener(
+        'input',
+        onInputSearch('tab-skills-search', 'skills-list')
+    );
+    element.focus();
+});
+
+registerOnLoad('tab-stats', (element) => {
+    registerTab('tab-stats', element);
+});
+
+registerOnLoad('stats-list', (element) => {
+    for (const [name, description] of Object.entries({
+        ...stats.base,
+        ...stats.skills,
+    }).sort((a, b) => {
+        const upperA = a[0].toUpperCase();
+        const upperB = b[0].toUpperCase();
+        if (upperA < upperB) {
+            return -1;
+        } else if (upperA > upperB) {
+            return 1;
+        } else {
+            return 0;
+        }
+    })) {
+        element.innerHTML += `<p><strong>${name}: ${description}</strong></p>`;
+    }
+});
+
+registerOnLoad('tab-stats-search', (element) => {
+    element.addEventListener(
+        'input',
+        onInputSearch('tab-stats-search', 'stats-list')
+    );
     element.focus();
 });

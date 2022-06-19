@@ -17,6 +17,11 @@ Praxian Era
 -   LUMINEN-CHARGE: LOGS PARTIAL AND ENCRYPTED - \<PRELIMINARY\> IMPERIAL SIGNATURES FOUND, NOT XENOS
 -   NOTE: body has spider tattoos between toes - possibly cultish signs
 -   NOTE: Anomandaris => adept with location
+-   NOTE: Ladies seen with corpse have been at a dive bar nearby
+-   NOTE: barkeep "volunteered" that corpse worked as scrapyard
+-   ERR: \<ADEPT CYK2971\> offline, reason: unknown
+-   NOTE: => Anomandaris using \<WARP\> search
+-   UPDATE: \<ADEPT CYK2971\> terminated, updating NuSphere Records
 
 ## Day 0
 

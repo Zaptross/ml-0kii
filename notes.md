@@ -22,6 +22,10 @@ Praxian Era
 -   ERR: \<ADEPT CYK2971\> offline, reason: unknown
 -   NOTE: => Anomandaris using \<WARP\> search
 -   UPDATE: \<ADEPT CYK2971\> terminated, updating NuSphere Records
+-   NOTE: Pieces missing from scrapped sentinels, hidden in "scrap" cubes
+-   NOTE: Duphrain requested to cleanse the site before handing over to the Mechanicus
+-   ALERT: Duprhain snuck a piece of tech (archeotech?) into his coat
+-   Note: Anomandaris => reputation++, reason: alerted me to Duprhain's actions
 
 ## Day 0
 
@@ -39,7 +43,7 @@ Praxian Era
 -   THEORY: Skitaari cogitators could be used to broadcast a target elimination signal
 -   PLAN: use two simultaneously to pass verification checks
 -   MEET: Lord Inquisitor, instructed to attempt plan
--   AIDED: Tam => useful with technology
+-   AIDED: Tam => useful with technology, reputation++
 -   LAUGHTER: Scheduled
 -   EXECUTE: PACKET \<TARGET KILL\> SENT... PACKET \<TARGET KILL CONFIRM\> SENT... \< ERR: ACCEPT UNCONFIRMED, NUSPHERE disconnected \>
 -   0: LOW POWER MODE...

@@ -138,7 +138,7 @@ const statsEnum = {
 let stats = {};
 
 const calcStat = (stat, skilled = 0, bonus10s = 0) =>
-    Math.floor((skilled ? 1 : 0.5) * stats.base[stat] + 10 * bonus10s);
+    Math.floor((skilled ? 1 : 0.5) * (stats.base[stat] + 10 * bonus10s));
 
 // Fill out stats object
 stats.base = {

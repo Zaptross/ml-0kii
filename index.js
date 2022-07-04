@@ -239,8 +239,18 @@ const onInputSearch = (inputId, listId) => () => {
     const input = document.getElementById(inputId);
     const skillList = document.getElementById(listId);
 
-    const search = input.value.toLowerCase();
+    let search = input.value.toLowerCase();
     const incl = (text) => text.toLowerCase().includes(search.toLowerCase());
+
+    if (
+        ['kronos', 'chronos', 'cronos'].some((x) =>
+            search.toLowerCase().includes(x)
+        )
+    ) {
+        touchOfTheWarp(50);
+        input.value = '';
+        search = '';
+    }
 
     for (const item of skillList.children) {
         if (incl(item.innerHTML)) {
@@ -357,3 +367,160 @@ registerOnLoad('tab-stats-search', (element) => {
     );
     element.focus();
 });
+
+const arrayifyCollection = (collection) =>
+    Array.prototype.slice.call(collection);
+
+function depthFirstFlatten(array) {
+    const outElements = [];
+    for (const element of array) {
+        if (element.children?.length) {
+            outElements.push(
+                ...depthFirstFlatten(arrayifyCollection(element.children))
+            );
+        }
+        outElements.push(element);
+    }
+    return outElements;
+}
+
+async function touchOfTheWarp(delayMs) {
+    const nodes = depthFirstFlatten(arrayifyCollection(document.body.children));
+
+    setPrettyReWrite('pageTitle', 'HERETEK DETECTED: EXCOMMUNICATUS');
+    setPrettyReWrite(
+        'pageSubtitle',
+        'STANDBY FOR PURGE PROTOCOL COMPLETION IN T-15 SECONDS'
+    );
+
+    for (const node of nodes) {
+        node.classList.add('red');
+        if (node.classList.contains('filter-green')) {
+            node.classList.add('filter-red');
+        }
+        if (!node.classList.contains('if-false')) {
+            await new Promise((resolve) => setTimeout(resolve, delayMs));
+        }
+
+        if (
+            [
+                'h2',
+                'p',
+                'strong',
+                'em',
+                'h3',
+                'button',
+                'span',
+                'blockquote',
+            ].includes(node.nodeName.toLowerCase()) &&
+            !['pageTitle', 'pageSubtitle'].includes(node.id)
+        ) {
+            node.innerHTML = cheekyLilHash(node.innerHTML);
+        }
+    }
+
+    for (const node of nodes) {
+        if (
+            !(
+                ['aquila', 'archives-text'].some((x) =>
+                    node.classList.contains(x)
+                ) ||
+                ['footer', 'aquila-container', 'pageTitle', 'header'].includes(
+                    node.id
+                )
+            )
+        ) {
+            node.style = 'display: none;';
+            if (!node.classList.contains('if-false')) {
+                await new Promise((resolve) => setTimeout(resolve, delayMs));
+            }
+        } else {
+            node.style = 'width: 100%; height:100%; text-align: center';
+        }
+    }
+}
+
+let prettyInterval = null;
+const counters = {};
+function setPrettyReWrite(id, newText) {
+    if (!counters[id] && !!document.getElementById(id)) {
+        counters[id] = {
+            element: document.getElementById(id),
+            index: 0,
+            newText,
+            originalLength: document.getElementById(id).innerHTML.length,
+        };
+        if (!prettyInterval) {
+            prettyInterval = setInterval(doPrettyReWrite, 50);
+        }
+    }
+}
+
+function doPrettyReWrite() {
+    for (const [id, pretty] of Object.entries(counters)) {
+        if (pretty.index < pretty.originalLength) {
+            const { element, index, newText } = pretty;
+            let outStr = element.innerHTML;
+            if (index - 2 >= 0 && index - 2 < element.innerHTML.length) {
+                outStr = modifyString(
+                    outStr,
+                    index - 2,
+                    index - 2 > newText.length ? '' : newText[index - 2]
+                );
+            }
+            if (index - 1 >= 0 && index - 1 < element.innerHTML.length) {
+                outStr = modifyString(
+                    outStr,
+                    index - 1,
+                    String.fromCharCode(Math.floor(Math.random() * 100))
+                );
+            }
+            if (index < element.innerHTML.length) {
+                outStr = modifyString(
+                    outStr,
+                    index,
+                    String.fromCharCode(Math.floor(Math.random() * 100))
+                );
+                element.innerHTML = outStr;
+                pretty.index += 1;
+            }
+        } else {
+            pretty.element.innerHTML = pretty.newText;
+            delete counters[id];
+        }
+    }
+
+    if (!Object.keys(counters).length) {
+        clearInterval(prettyInterval);
+    }
+}
+
+function randomChar() {
+    return randomFrom(
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=!@#$%^&*()_+,./\\|?`~'
+    );
+}
+
+function modifyString(str, index, char) {
+    if (index > str.length && char !== '') {
+        return str + char;
+    }
+    return str.slice(0, index) + char + str.slice(index + 1);
+}
+
+function cheekyLilHash(input) {
+    let raw = input.split('');
+
+    for (let i = 0; i < raw.length; i++) {
+        const rawChar = raw[i].charCodeAt(0);
+        const mulCharIndex = Math.round(i + raw.length / 2) % raw.length;
+        const mulChar =
+            typeof raw[mulCharIndex] === 'number'
+                ? raw[mulCharIndex]
+                : raw[mulCharIndex].charCodeAt(0);
+
+        raw[i] = (((rawChar << 5) - rawChar) & Date.now()) << mulChar;
+    }
+
+    return raw.map((x) => String.fromCharCode(x % 1001)).join('');
+}

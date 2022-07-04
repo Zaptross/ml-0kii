@@ -15,6 +15,31 @@ blockquote {
     filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(70%) contrast(119%);
 }
 
+.filter-red {
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(331deg) brightness(70%) contrast(119%);
+    animation: spin 1s infinite linear
+}
+
+.aquila.filter-red {
+    animation: invert 1s forwards
+}
+
+.red {
+    color: red;
+    border-color: red;
+}
+
+.section-tab.red {
+    color: red;
+    border-color: red;
+    border-bottom-color: #000;
+}
+
+.section-tab.selected.red {
+    background-color: #440000;
+    border-bottom-color: #440000;
+}
+
 .centre-children {
     text-align: center;
 }
@@ -122,4 +147,24 @@ input {
 
 button {
     cursor: pointer;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes invert {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(180deg);
+    }
 }

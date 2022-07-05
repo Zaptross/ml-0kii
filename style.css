@@ -149,6 +149,27 @@ button {
     cursor: pointer;
 }
 
+.redacted {
+    color: rgb(150, 30, 30);
+    border: rgb(200, 30, 30) dashed;
+}
+
+.angleBraced {
+    color: rgb(30, 30, 200)
+}
+
+.angleBraced::before {
+    content: '<';
+    font-weight: 1000;
+    color: rgb(0, 164, 0);
+}
+
+.angleBraced::after {
+    content: '>';
+    font-weight: 1000;
+    color: rgb(0, 164, 0);
+}
+
 @keyframes spin {
     from {
         transform: rotate(0deg);

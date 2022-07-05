@@ -2,6 +2,7 @@ if (!localStorage.getItem('last-tab')) {
     localStorage.setItem('last-tab', 'tab-background');
 }
 
+const KRONOS_VARIANTS = ['kronos', 'chronos', 'cronos'];
 const intervals = {};
 const checkAllInterval = setInterval(checkAllWaitingIntervals, 5);
 
@@ -98,7 +99,7 @@ const quotes = [
     ],
 ];
 
-const skills = {
+const abilities = {
     'Technical Knock':
         'With a honeyed whisper and ritual motion, you can awaken sleeping gun-spirits into furious action once more. You may unjam any gun as a Half Action. You must touch the gun in question to enact this rite. You may only perform this rite on one weapon per Round—any more would be disrespectful',
     'Rapid Reload':
@@ -242,11 +243,7 @@ const onInputSearch = (inputId, listId) => () => {
     let search = input.value.toLowerCase();
     const incl = (text) => text.toLowerCase().includes(search.toLowerCase());
 
-    if (
-        ['kronos', 'chronos', 'cronos'].some((x) =>
-            search.toLowerCase().includes(x)
-        )
-    ) {
+    if (KRONOS_VARIANTS.some((x) => search.toLowerCase().includes(x))) {
         touchOfTheWarp(50);
         input.value = '';
         search = '';
@@ -309,12 +306,12 @@ registerOnLoad('tab-background', (element) => {
     registerTab('tab-background', element);
 });
 
-registerOnLoad('tab-skills', (element) => {
-    registerTab('tab-skills', element);
+registerOnLoad('tab-abilities', (element) => {
+    registerTab('tab-abilities', element);
 });
 
-registerOnLoad('skills-list', (element) => {
-    for (const [name, description] of Object.entries(skills).sort((a, b) => {
+registerOnLoad('abilities-list', (element) => {
+    for (const [name, description] of Object.entries(abilities).sort((a, b) => {
         const upperA = a[0].toUpperCase();
         const upperB = b[0].toUpperCase();
         if (upperA < upperB) {
@@ -329,16 +326,27 @@ registerOnLoad('skills-list', (element) => {
     }
 });
 
-registerOnLoad('tab-skills-search', (element) => {
+registerOnLoad('tab-abilities-search', (element) => {
     element.addEventListener(
         'input',
-        onInputSearch('tab-skills-search', 'skills-list')
+        onInputSearch('tab-abilities-search', 'abilities-list')
     );
     element.focus();
 });
 
 registerOnLoad('tab-stats', (element) => {
     registerTab('tab-stats', element);
+});
+
+registerOnLoad('tab-notes', async (element) => {
+    registerTab('tab-notes', element);
+
+    const notesData = await (await fetch('notes.md')).text();
+
+    element.innerHTML = notesData
+        .split(/[\n\r]+/)
+        .map(markdownToHTML)
+        .join('');
 });
 
 registerOnLoad('stats-list', (element) => {
@@ -359,6 +367,58 @@ registerOnLoad('stats-list', (element) => {
         element.innerHTML += `<p><strong>${name}: ${description}</strong></p>`;
     }
 });
+
+/**
+ * @param {string} raw
+ */
+function markdownToHTML(raw) {
+    /**
+     * @param {string} raw
+     */
+    const preprocess = (str) => {
+        let out = str;
+
+        if (['<', '>'].some((x) => out.includes(x))) {
+            out = out.replace(
+                /\\<(.*?)\\>/gim,
+                '<span style="color: magenta;" class="angleBraced">$1</span>'
+            );
+        }
+
+        const split = out.split(':');
+
+        if (split.length > 1) {
+            out = `<strong>${split[0]}</strong>${split.slice(1)}`;
+        }
+
+        if (KRONOS_VARIANTS.some((x) => new RegExp(x, 'gmi'))) {
+            for (const variant of KRONOS_VARIANTS) {
+                for (const varCase of [
+                    variant.toLowerCase(),
+                    variant.toUpperCase(),
+                ]) {
+                    out = out.replace(
+                        varCase,
+                        `<span class="redacted">REDACTED</span>`
+                    );
+                }
+            }
+        }
+
+        return out;
+    };
+
+    if (raw.startsWith('##')) {
+        return `<h3>${preprocess(raw.slice(3))}</h3>`;
+    }
+    if (raw.startsWith('#')) {
+        return `<h2>${preprocess(raw.slice(2))}</h2>`;
+    }
+    if (raw.startsWith('-')) {
+        return `<li>${preprocess(raw.slice(2))}</li>`;
+    }
+    return `<p>${preprocess(raw)}</p>`;
+}
 
 registerOnLoad('tab-stats-search', (element) => {
     element.addEventListener(

@@ -22,7 +22,7 @@
 -   NOTE: log enigma: binary encoded file image received post-update v1.35.1.976
 -   PRIORITY: Image: Arcadia, deep core, Message Reads: COME FELLOW HERETEK
 -   NOTE: Fake ML-0KII constructed
--   PRIORITY: Duphraine message - showed KRONOS to the entire planet, starting Adeptus Mechanicus civil war
+-   PRIORITY: Dufresne message - showed KRONOS to the entire planet, starting Adeptus Mechanicus civil war
 -
 
 # Day -90
@@ -42,10 +42,10 @@
 -   NOTE: => Anomandaris using \<WARP\> search
 -   UPDATE: \<ADEPT CYK2971\> terminated, updating NuSphere Records
 -   NOTE: Pieces missing from scrapped sentinels, hidden in "scrap" cubes
--   NOTE: Duphrain requested to cleanse the site before handing over to the Mechanicus
--   ALERT: Duprhain snuck a piece of tech (archeotech?) into his coat
--   Note: Anomandaris => reputation++, reason: alerted me to Duprhain's actions
+-   NOTE: Dufresne requested to cleanse the site before handing over to the Mechanicus
+-   ALERT: Dufresne snuck a piece of tech (archeotech?) into his coat
+-   Note: Anomandaris => reputation++, reason: alerted me to Dufresne's actions
 
 # Prehistory With Brother Jogul
 
--   Duphrain was highly cautious to take notes on paper, keeping opsec to a high standard with tech
+-   Dufresne was highly cautious to take notes on paper, keeping opsec to a high standard with tech

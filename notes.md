@@ -1,33 +1,6 @@
-# Prehistory With Brother Jogul
-
--   Duphrain was highly cautious to take notes on paper, keeping opsec to a high standard with tech
-
 # ML-0KII's Logs
 
-Praxian Era
-
-# Day -90
-
--   CONTEXT: (several months before campaign start)
--   MEET: Sunny Smiles, Anomandaris, Jogul
--   NOTE: corpse of priest-seeker torn apart from inside,
--   NOTE: room looks like a blast of gunfire has torn up the center of the church
--   LUMINEN-CHARGE: \<SUCCESS\> LOGS DOWNLOADING...
--   LUMINEN-CHARGE: \<INTERRUPT\> LOGS DOWNLOAD TERMINATED FROM DEVICE SIDE
--   LUMINEN-CHARGE: LOGS PARTIAL AND ENCRYPTED - \<PRELIMINARY\> IMPERIAL SIGNATURES FOUND, NOT XENOS
--   NOTE: body has spider tattoos between toes - possibly cultish signs
--   NOTE: Anomandaris => adept with location
--   NOTE: Ladies seen with corpse have been at a dive bar nearby
--   NOTE: barkeep "volunteered" that corpse worked as scrapyard
--   ERR: \<ADEPT CYK2971\> offline, reason: unknown
--   NOTE: => Anomandaris using \<WARP\> search
--   UPDATE: \<ADEPT CYK2971\> terminated, updating NuSphere Records
--   NOTE: Pieces missing from scrapped sentinels, hidden in "scrap" cubes
--   NOTE: Duphrain requested to cleanse the site before handing over to the Mechanicus
--   ALERT: Duprhain snuck a piece of tech (archeotech?) into his coat
--   Note: Anomandaris => reputation++, reason: alerted me to Duprhain's actions
-
-## Day 0
+# Day 0
 
 -   MEET: Tam, Odessa, noted loss of previous acolytes
 -   PRIORITY: Learned of KRONOS tablet
@@ -53,3 +26,28 @@ Praxian Era
 -   NOTE: Fake ML-0KII constructed
 -   PRIORITY: Duphraine message - showed KRONOS to the entire planet, starting Adeptus Mechanicus civil war
 -
+
+# Day -90
+
+-   CONTEXT: (several months before campaign start)
+-   MEET: Sunny Smiles, Anomandaris, Jogul
+-   NOTE: corpse of priest-seeker torn apart from inside,
+-   NOTE: room looks like a blast of gunfire has torn up the center of the church
+-   LUMINEN-CHARGE: \<SUCCESS\> LOGS DOWNLOADING...
+-   LUMINEN-CHARGE: \<INTERRUPT\> LOGS DOWNLOAD TERMINATED FROM DEVICE SIDE
+-   LUMINEN-CHARGE: LOGS PARTIAL AND ENCRYPTED - \<PRELIMINARY\> IMPERIAL SIGNATURES FOUND, NOT XENOS
+-   NOTE: body has spider tattoos between toes - possibly cultish signs
+-   NOTE: Anomandaris => adept with location
+-   NOTE: Ladies seen with corpse have been at a dive bar nearby
+-   NOTE: barkeep "volunteered" that corpse worked as scrapyard
+-   ERR: \<ADEPT CYK2971\> offline, reason: unknown
+-   NOTE: => Anomandaris using \<WARP\> search
+-   UPDATE: \<ADEPT CYK2971\> terminated, updating NuSphere Records
+-   NOTE: Pieces missing from scrapped sentinels, hidden in "scrap" cubes
+-   NOTE: Duphrain requested to cleanse the site before handing over to the Mechanicus
+-   ALERT: Duprhain snuck a piece of tech (archeotech?) into his coat
+-   Note: Anomandaris => reputation++, reason: alerted me to Duprhain's actions
+
+# Prehistory With Brother Jogul
+
+-   Duphrain was highly cautious to take notes on paper, keeping opsec to a high standard with tech

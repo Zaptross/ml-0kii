@@ -124,7 +124,7 @@ const abilities = {
         </table>`,
 };
 
-const statsEnum = {
+const skillsEnum = {
     ws: 'Weapon Skill',
     bs: 'Ballistic Skill',
     str: 'Strength',
@@ -136,51 +136,51 @@ const statsEnum = {
     fel: 'Fellowship',
 };
 
-let stats = {};
+let skills = {};
 
 const calcStat = (stat, skilled = 0, bonus10s = 0) =>
-    Math.floor((skilled ? 1 : 0.5) * (stats.base[stat] + 10 * bonus10s));
+    Math.floor((skilled ? 1 : 0.5) * (skills.stats[stat] + 10 * bonus10s));
 
 // Fill out stats object
-stats.base = {
-    [statsEnum.ws]: 34,
-    [statsEnum.bs]: 39,
-    [statsEnum.str]: 29,
-    [statsEnum.t]: 40,
-    [statsEnum.ag]: 32,
-    [statsEnum.int]: 37,
-    [statsEnum.per]: 39,
-    [statsEnum.wp]: 36,
-    [statsEnum.fel]: 25,
+skills.stats = {
+    [skillsEnum.ws]: 34,
+    [skillsEnum.bs]: 39,
+    [skillsEnum.str]: 29,
+    [skillsEnum.t]: 40,
+    [skillsEnum.ag]: 32,
+    [skillsEnum.int]: 37,
+    [skillsEnum.per]: 39,
+    [skillsEnum.wp]: 36,
+    [skillsEnum.fel]: 25,
 };
-stats.skills = {
-    Awareness: calcStat(statsEnum.per, 0, 1),
-    Barter: calcStat(statsEnum.fel),
-    Carouse: calcStat(statsEnum.t),
-    Charm: calcStat(statsEnum.fel),
-    Climb: calcStat(statsEnum.str),
-    Concealment: calcStat(statsEnum.ag),
-    Contortionist: calcStat(statsEnum.ag),
-    Deceive: calcStat(statsEnum.fel),
-    Disguise: calcStat(statsEnum.fel),
-    Dodge: calcStat(statsEnum.ag),
-    Evaluate: calcStat(statsEnum.int),
-    Gamble: calcStat(statsEnum.int),
-    Inquiry: calcStat(statsEnum.fel),
-    Intimidate: calcStat(statsEnum.fel),
-    Logic: calcStat(statsEnum.int, 1, 1),
-    Scrutiny: calcStat(statsEnum.per, 0, 1),
-    Search: calcStat(statsEnum.per, 0, 1),
-    'Silent Move': calcStat(statsEnum.ag),
-    Swim: calcStat(statsEnum.str),
-    Literacy: calcStat(statsEnum.int),
-    'Speak Language (Low Gothic)': calcStat(statsEnum.fel, 1),
-    'Speak Language (Hive Dialect)': calcStat(statsEnum.fel, 1),
-    'Secret Tongue (Tech)': calcStat(statsEnum.int, 1),
-    'Trade (Scrimshawer)': calcStat(statsEnum.ag, 1),
-    'Common Lore (Machine Cult)': calcStat(statsEnum.int, 1),
-    'Common Lore (Tech)': calcStat(statsEnum.int, 1),
-    'Tech Use': calcStat(statsEnum.int, 1, 2),
+skills.skills = {
+    Awareness: calcStat(skillsEnum.per, 0, 1),
+    Barter: calcStat(skillsEnum.fel),
+    Carouse: calcStat(skillsEnum.t),
+    Charm: calcStat(skillsEnum.fel),
+    Climb: calcStat(skillsEnum.str),
+    Concealment: calcStat(skillsEnum.ag),
+    Contortionist: calcStat(skillsEnum.ag),
+    Deceive: calcStat(skillsEnum.fel),
+    Disguise: calcStat(skillsEnum.fel),
+    Dodge: calcStat(skillsEnum.ag),
+    Evaluate: calcStat(skillsEnum.int),
+    Gamble: calcStat(skillsEnum.int),
+    Inquiry: calcStat(skillsEnum.fel),
+    Intimidate: calcStat(skillsEnum.fel),
+    Logic: calcStat(skillsEnum.int, 1, 1),
+    Scrutiny: calcStat(skillsEnum.per, 0, 1),
+    Search: calcStat(skillsEnum.per, 0, 1),
+    'Silent Move': calcStat(skillsEnum.ag),
+    Swim: calcStat(skillsEnum.str),
+    Literacy: calcStat(skillsEnum.int),
+    'Speak Language (Low Gothic)': calcStat(skillsEnum.fel, 1),
+    'Speak Language (Hive Dialect)': calcStat(skillsEnum.fel, 1),
+    'Secret Tongue (Tech)': calcStat(skillsEnum.int, 1),
+    'Trade (Scrimshawer)': calcStat(skillsEnum.ag, 1),
+    'Common Lore (Machine Cult)': calcStat(skillsEnum.int, 1),
+    'Common Lore (Tech)': calcStat(skillsEnum.int, 1),
+    'Tech Use': calcStat(skillsEnum.int, 1, 2),
 };
 
 function randomFrom(array, length = 1) {
@@ -334,8 +334,8 @@ registerOnLoad('tab-abilities-search', (element) => {
     element.focus();
 });
 
-registerOnLoad('tab-stats', (element) => {
-    registerTab('tab-stats', element);
+registerOnLoad('tab-skills', (element) => {
+    registerTab('tab-skills', element);
 });
 
 registerOnLoad('tab-notes', async (element) => {
@@ -349,10 +349,10 @@ registerOnLoad('tab-notes', async (element) => {
         .join('');
 });
 
-registerOnLoad('stats-list', (element) => {
+registerOnLoad('skills-list', (element) => {
     for (const [name, description] of Object.entries({
-        ...stats.base,
-        ...stats.skills,
+        ...skills.stats,
+        ...skills.skills,
     }).sort((a, b) => {
         const upperA = a[0].toUpperCase();
         const upperB = b[0].toUpperCase();
@@ -420,10 +420,10 @@ function markdownToHTML(raw) {
     return `<p>${preprocess(raw)}</p>`;
 }
 
-registerOnLoad('tab-stats-search', (element) => {
+registerOnLoad('tab-skills-search', (element) => {
     element.addEventListener(
         'input',
-        onInputSearch('tab-stats-search', 'stats-list')
+        onInputSearch('tab-skills-search', 'skills-list')
     );
     element.focus();
 });

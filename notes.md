@@ -1,5 +1,3 @@
-# ML-0KII's Logs
-
 # Day 0
 
 -   MEET: Tam, Odessa, noted loss of previous acolytes

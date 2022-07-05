@@ -340,13 +340,21 @@ registerOnLoad('tab-skills', (element) => {
 
 registerOnLoad('tab-notes', async (element) => {
     registerTab('tab-notes', element);
-
+});
+registerOnLoad('notes-list', async (element) => {
     const notesData = await (await fetch('notes.md')).text();
 
     element.innerHTML = notesData
         .split(/[\n\r]+/)
         .map(markdownToHTML)
         .join('');
+});
+registerOnLoad('tab-notes-search', (element) => {
+    element.addEventListener(
+        'input',
+        onInputSearch('tab-notes-search', 'notes-list')
+    );
+    element.focus();
 });
 
 registerOnLoad('skills-list', (element) => {

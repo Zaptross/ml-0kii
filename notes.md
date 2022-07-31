@@ -1,3 +1,13 @@
+# Day 0 - Part \<II\>
+
+-   NOTE: Yogul recounted: Aralax the Despoiler, the Webweaver, the Lurking Dark, the Hand of Fate
+-   NOTE: Odessa recounted: corrupted nobles of Chiran IX, and their cannibalisation of the planet's populace, briefly imprisoned as a demonhost by Merrick Von Bron, posessed him, murdered people
+-   NOTE: Banished by Sabeen Al Hamali; it is a potent manipulator over and above other demons
+-   ARMOURY: new \<SHINY\> gun, new \<SHINY\> armour, new mechadendrite
+-   UPGRADE: mechadentrOS 317.999.M41 \<SELF-INSTALL\> \<TYPE Plasma\>
+-   PLAN: setup front of governer's palace with explosives, turret mounts indoors, Xanthe to take out top and bottom attacks
+-
+
 # Day 0
 
 -   MEET: Tam, Odessa, noted loss of previous acolytes

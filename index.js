@@ -183,6 +183,18 @@ skills.skills = {
     'Tech Use': calcStat(skillsEnum.int, 1, 2),
 };
 
+const traits = {
+    'Basic Weapon Training (Las)': 'Can wield basic las ranged weapons',
+    'Melee Weapon Training (Primitive)': 'Can wield primitive melee weapons',
+    'Pistol Training (Las)': 'Can wield las pistols',
+    'Accustomed to Crowds':
+        'Crowds do not count as Difficult Terrain, and when running or charging through a dense crowd, no penalty to agility test',
+    Hivebound: '-10 Survival tests, -5 to all INT tests outside "proper hab"',
+    'Pistol Training (Las)': 'Can wield las pistols',
+    Wary: 'All hivers get +1 Initiative rolls',
+    'Electro Graft Use': '+10 Common Lore, Inquiry, Tech-Use using datapoint',
+};
+
 function randomFrom(array, length = 1) {
     const out = Array(length).fill(null);
 
@@ -337,6 +349,24 @@ registerOnLoad('tab-abilities-search', (element) => {
 registerOnLoad('tab-skills', (element) => {
     registerTab('tab-skills', element);
 });
+registerOnLoad('skills-list', (element) => {
+    for (const [name, description] of Object.entries({
+        ...skills.stats,
+        ...skills.skills,
+    }).sort((a, b) => {
+        const upperA = a[0].toUpperCase();
+        const upperB = b[0].toUpperCase();
+        if (upperA < upperB) {
+            return -1;
+        } else if (upperA > upperB) {
+            return 1;
+        } else {
+            return 0;
+        }
+    })) {
+        element.innerHTML += `<p><strong>${name}: ${description}</strong></p>`;
+    }
+});
 
 registerOnLoad('tab-notes', async (element) => {
     registerTab('tab-notes', element);
@@ -357,11 +387,11 @@ registerOnLoad('tab-notes-search', (element) => {
     element.focus();
 });
 
-registerOnLoad('skills-list', (element) => {
-    for (const [name, description] of Object.entries({
-        ...skills.stats,
-        ...skills.skills,
-    }).sort((a, b) => {
+registerOnLoad('tab-traits', async (element) => {
+    registerTab('tab-traits', element);
+});
+registerOnLoad('traits-list', async (element) => {
+    for (const [name, description] of Object.entries(traits).sort((a, b) => {
         const upperA = a[0].toUpperCase();
         const upperB = b[0].toUpperCase();
         if (upperA < upperB) {
@@ -372,8 +402,15 @@ registerOnLoad('skills-list', (element) => {
             return 0;
         }
     })) {
-        element.innerHTML += `<p><strong>${name}: ${description}</strong></p>`;
+        element.innerHTML += `<p><strong>${name}</strong>: ${description}</p>`;
     }
+});
+registerOnLoad('tab-traits-search', (element) => {
+    element.addEventListener(
+        'input',
+        onInputSearch('tab-traits-search', 'traits-list')
+    );
+    element.focus();
 });
 
 /**

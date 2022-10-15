@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <title>ML-0KII</title>
         <link rel="stylesheet" href="style.css" />
+        <script src="https://kit.fontawesome.com/653251a210.js" crossorigin="anonymous"></script>
         <script src="index.js"></script>
     </head>
     <body>
@@ -16,6 +17,11 @@
             <div class="archives-text column-middle flex-row">
                 <h2 id="pageTitle">Adeptus Arbites Archives</h2>
                 <h3 id="pageSubtitle">Offices of Hive World Arcadia</h3>
+                <div id="physical-load" class="flex-column">
+                    <p id="physical-filesystem-error"></p>
+                    <div onclick="loadCharacterState()"><i class="fa-solid fa-upload"></i>Load</div>
+                    <div onclick="saveCharacterState()"><i class="fa-solid fa-download"></i>Save</div>
+                </div>
             </div>
             <img
                 src="assets/adeptus-arbites.svg"
@@ -63,6 +69,10 @@
                     <input id="tab-traits-search" type="search"></input>
                 </div>
                 <div id="traits-list"></div>
+            </div>
+            <div class="flex-row" id="tab-physical">
+                <div id="physical-left" class="flex-column column-half if-false">Left</div>
+                <div id="physical-right" class="flex-column if-false">Right</div>
             </div>
         </div>
         <div class="align-center-bottom">

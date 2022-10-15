@@ -24,7 +24,7 @@ function registerOnLoad(id, func) {
     intervals[id] = func;
 }
 
-const ML0KII = {
+const characterHistory = {
     id: 'ML-0KII',
     aliases: {
         born: 'Mauger Lavars',
@@ -66,7 +66,7 @@ const chars =
         ''
     );
 
-const NOTES = {
+const characterNotes = {
     'SURVEILLANCE NOTES': [
         "pictographs show he was previously a charismatic leader, guess it's hard to charm with a vox-caster",
         'appears to have received life-sustaining augmetics, deeper than just a few old battle wounds',
@@ -99,7 +99,7 @@ const quotes = [
     ],
 ];
 
-const abilities = {
+const characterAbilities = {
     'Technical Knock':
         'With a honeyed whisper and ritual motion, you can awaken sleeping gun-spirits into furious action once more. You may unjam any gun as a Half Action. You must touch the gun in question to enact this rite. You may only perform this rite on one weapon per Round—any more would be disrespectful',
     'Rapid Reload':
@@ -136,13 +136,15 @@ const skillsEnum = {
     fel: 'Fellowship',
 };
 
-let skills = {};
+let characterSkills = {};
 
 const calcStat = (stat, skilled = 0, bonus10s = 0) =>
-    Math.floor((skilled ? 1 : 0.5) * (skills.stats[stat] + 10 * bonus10s));
+    Math.floor(
+        (skilled ? 1 : 0.5) * (characterSkills.stats[stat] + 10 * bonus10s)
+    );
 
 // Fill out stats object
-skills.stats = {
+characterSkills.stats = {
     [skillsEnum.ws]: 34,
     [skillsEnum.bs]: 39,
     [skillsEnum.str]: 29,
@@ -153,7 +155,7 @@ skills.stats = {
     [skillsEnum.wp]: 36,
     [skillsEnum.fel]: 25,
 };
-skills.skills = {
+characterSkills.skills = {
     Awareness: calcStat(skillsEnum.per, 0, 1),
     Barter: calcStat(skillsEnum.fel),
     Carouse: calcStat(skillsEnum.t),
@@ -295,7 +297,7 @@ function tabOnClick(tabId) {
 }
 
 registerOnLoad('character', (element) => {
-    element.innerHTML = jsonToDivsRecursive(ML0KII);
+    element.innerHTML = jsonToDivsRecursive(characterHistory);
 });
 
 registerOnLoad('quote', (element) => {
@@ -303,7 +305,7 @@ registerOnLoad('quote', (element) => {
 });
 
 registerOnLoad('file', (element) => {
-    element.innerHTML = `CITIZEN FILE: ${ML0KII.id.toUpperCase()}`;
+    element.innerHTML = `CITIZEN FILE: ${characterHistory.id.toUpperCase()}`;
 });
 
 registerOnLoad('emperor-quote', (element) => {
@@ -311,7 +313,7 @@ registerOnLoad('emperor-quote', (element) => {
 });
 
 registerOnLoad('character-notes', (element) => {
-    element.innerHTML = jsonToDivsRecursive(NOTES);
+    element.innerHTML = jsonToDivsRecursive(characterNotes);
 });
 
 registerOnLoad('tab-background', (element) => {
@@ -323,17 +325,19 @@ registerOnLoad('tab-abilities', (element) => {
 });
 
 registerOnLoad('abilities-list', (element) => {
-    for (const [name, description] of Object.entries(abilities).sort((a, b) => {
-        const upperA = a[0].toUpperCase();
-        const upperB = b[0].toUpperCase();
-        if (upperA < upperB) {
-            return -1;
-        } else if (upperA > upperB) {
-            return 1;
-        } else {
-            return 0;
+    for (const [name, description] of Object.entries(characterAbilities).sort(
+        (a, b) => {
+            const upperA = a[0].toUpperCase();
+            const upperB = b[0].toUpperCase();
+            if (upperA < upperB) {
+                return -1;
+            } else if (upperA > upperB) {
+                return 1;
+            } else {
+                return 0;
+            }
         }
-    })) {
+    )) {
         element.innerHTML += `<li><p><strong>${name}</strong></p><p>${description}</p></li>`;
     }
 });
@@ -351,8 +355,8 @@ registerOnLoad('tab-skills', (element) => {
 });
 registerOnLoad('skills-list', (element) => {
     for (const [name, description] of Object.entries({
-        ...skills.stats,
-        ...skills.skills,
+        ...characterSkills.stats,
+        ...characterSkills.skills,
     }).sort((a, b) => {
         const upperA = a[0].toUpperCase();
         const upperB = b[0].toUpperCase();
@@ -628,4 +632,45 @@ function cheekyLilHash(input) {
     }
 
     return raw.map((x) => String.fromCharCode(x % 1001)).join('');
+}
+
+registerOnLoad('tab-physical', (element) => {
+    registerTab('tab-physical', element);
+});
+
+function loadCharacterState() {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'application/json';
+    input.onchange = (e) => {
+        var file = e.target.files[0];
+
+        var reader = new FileReader();
+        reader.onload = (re) => {
+            var content = JSON.parse(re.target.result);
+
+            document.getElementById('file').innerHTML = content.name;
+        };
+        reader.readAsText(file, 'UTF-8');
+    };
+    input.click();
+}
+function saveCharacterState() {
+    var a = document.createElement('a');
+    var file = new Blob(
+        [
+            JSON.stringify({
+                characterAbilities,
+                characterHistory,
+                characterNotes,
+                characterStats: characterSkills.stats,
+            }),
+        ],
+        {
+            type: 'application/json',
+        }
+    );
+    a.href = URL.createObjectURL(file);
+    a.download = 'ML-0KII.json';
+    a.click();
 }

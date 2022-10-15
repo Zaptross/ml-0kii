@@ -1,3 +1,7 @@
+# Day 0 - Part \<III\>
+
+-
+
 # Day 0 - Part \<II\>
 
 -   NOTE: Yogul recounted: Aralax the Despoiler, the Webweaver, the Lurking Dark, the Hand of Fate

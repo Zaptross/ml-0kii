@@ -1,191 +1,199 @@
 :root {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: large;
-    background-color: black;
-    color: green;
-    margin: 1rem;
+  font-family: "Courier New", Courier, monospace;
+  font-size: large;
+  background-color: black;
+  color: green;
+  margin: 1rem;
 }
 
 blockquote {
-    text-align: center;
-    margin: 0 auto;
+  text-align: center;
+  margin: 0 auto;
+}
+
+callout {
+  font-weight: bold;
+  color: #99ff99;
+  border: thin dashed;
 }
 
 .filter-green {
-    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(70%) contrast(119%);
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg)
+    brightness(70%) contrast(119%);
 }
 
 .filter-red {
-    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(331deg) brightness(70%) contrast(119%);
-    animation: spin 1s infinite linear
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(331deg)
+    brightness(70%) contrast(119%);
+  animation: spin 1s infinite linear;
 }
 
 .aquila.filter-red {
-    animation: invert 1s forwards
+  animation: invert 1s forwards;
 }
 
 .red {
-    color: red;
-    border-color: red;
+  color: red;
+  border-color: red;
 }
 
 .section-tab.red {
-    color: red;
-    border-color: red;
-    border-bottom-color: #000;
+  color: red;
+  border-color: red;
+  border-bottom-color: #000;
 }
 
 .section-tab.selected.red {
-    background-color: #440000;
-    border-bottom-color: #440000;
+  background-color: #440000;
+  border-bottom-color: #440000;
 }
 
 .centre-children {
-    text-align: center;
+  text-align: center;
 }
 
 .centre-self {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .align-center-bottom {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .aquila {
-    width: 20rem;
+  width: 20rem;
 }
 
 .administratum {
-    padding-top: 1rem;
-    height: 5.5rem;
+  padding-top: 1rem;
+  height: 5.5rem;
 }
 
 .arbites {
-    height: 7rem;
-    text-align: start;
+  height: 7rem;
+  text-align: start;
 }
 
 .archives-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .column-middle {
-    width: 80%;
+  width: 80%;
 }
 
 .column-sides {
-    width: 10%;
+  width: 10%;
 }
 
 .column-half {
-    width: 50%;
+  width: 50%;
 }
 
 .flex-row {
-    display: flex;
+  display: flex;
 }
 
 .flex-row .flex-row {
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .flex-row .flex-column {
-    flex-direction: row;
+  flex-direction: row;
 }
 
 blockquote#emperor-quote {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .if-false {
-    display: none;
+  display: none;
 }
 
 .section-tab {
-    background: #000;
-    color: green;
-    padding: .7rem;
-    margin-left: 0.4rem;
-    border-top-style: solid;
-    border-top-color: green;
-    border-left-style: solid;
-    border-left-color: green;
-    border-right-style: solid;
-    border-right-color: green;
+  background: #000;
+  color: green;
+  padding: 0.7rem;
+  margin-left: 0.4rem;
+  border-top-style: solid;
+  border-top-color: green;
+  border-left-style: solid;
+  border-left-color: green;
+  border-right-style: solid;
+  border-right-color: green;
 }
 
 .section-tab.selected {
-    background-color: #004400;
-    border-bottom-style: solid;
-    border-bottom-color: #004400;
-    font-weight: bolder;
+  background-color: #004400;
+  border-bottom-style: solid;
+  border-bottom-color: #004400;
+  font-weight: bolder;
 }
 
 #tabs-selector {
-    border-bottom-style: solid;
-    margin-bottom: 0.4rem;
+  border-bottom-style: solid;
+  margin-bottom: 0.4rem;
 }
 
 #tabs-selector :first-child {
-    margin-left: 1rem;
+  margin-left: 1rem;
 }
 
 input {
-    background: black;
-    color: green;
-    border-color: green;
-    border-style: solid;
-    border-width: thin;
-    padding: 0.2rem;
-    font-family: monospace;
+  background: black;
+  color: green;
+  border-color: green;
+  border-style: solid;
+  border-width: thin;
+  padding: 0.2rem;
+  font-family: monospace;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .redacted {
-    color: rgb(150, 30, 30);
-    border: rgb(200, 30, 30) dashed;
+  color: rgb(150, 30, 30);
+  border: rgb(200, 30, 30) dashed;
 }
 
 .angleBraced {
-    color: rgb(30, 30, 200)
+  color: rgb(30, 30, 200);
 }
 
 .angleBraced::before {
-    content: '<';
-    font-weight: 1000;
-    color: rgb(0, 164, 0);
+  content: "<";
+  font-weight: 1000;
+  color: rgb(0, 164, 0);
 }
 
 .angleBraced::after {
-    content: '>';
-    font-weight: 1000;
-    color: rgb(0, 164, 0);
+  content: ">";
+  font-weight: 1000;
+  color: rgb(0, 164, 0);
 }
 
 @keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
 
-    to {
-        transform: rotate(360deg);
-    }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes invert {
-    from {
-        transform: rotate(0deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
 
-    to {
-        transform: rotate(180deg);
-    }
+  to {
+    transform: rotate(180deg);
+  }
 }

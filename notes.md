@@ -1,5 +1,6 @@
 # Day 7
 
+- WARN: Crossfire between more Sirens in corridors
 - NOTE: Battle continues, people nearly falling, tide turning
 - ERROR: \<CONNECTION FAILED\>, RETRYING..., \<CONNECTION FAILED\>
 - ERROR: \<WEAPON DROPPED\>

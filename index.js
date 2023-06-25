@@ -221,6 +221,28 @@ const weapons = {
     reload: "Full",
     special: "Reliable, *Full(5), Overheat 80",
   },
+  "Plasma Mechadendrite": {
+    class: "Pistol Las",
+    damage: "1d10+6",
+    damageType: "E",
+    range: 30,
+    clip: 20,
+    penetration: 6,
+    rateOfFire: "S/-/-",
+    reload: "2 Full",
+    special: "1/rnd free shot",
+  },
+  "Merovech Assault Lasgun": {
+    class: "Basic Las",
+    damage: "1d10+3",
+    damageType: "E",
+    range: 100,
+    clip: 120,
+    penetration: 0,
+    rateOfFire: "S/3/10",
+    reload: "Full",
+    special: "Reliable, Bayonet, Clip 120",
+  },
 };
 
 function randomFrom(array, length = 1) {
@@ -319,6 +341,11 @@ function tabOnClick(tabId) {
     } else {
       tab.classList.remove("selected");
     }
+  }
+
+  const input = document.getElementById(`${tabId}-search`);
+  if (input) {
+    input.focus();
   }
 }
 
@@ -458,13 +485,16 @@ registerOnLoad("weapons-list", async (element) => {
     }
   })) {
     element.innerHTML += `
-    <p>
-      <strong>${name}</strong>:
-        <blockquote>${Object.keys(description)
-          .map((x) => `<strong>${x}</strong>: ${description[x]}`)
-          .join("<br>")}
-        </blockquote>
-    </p>`;
+    <div>
+      <p>
+        <strong>${name}</strong>:
+      </p>
+      <blockquote>${Object.keys(description)
+        .map((x) => `<strong>${x}</strong>: ${description[x]}`)
+        .join("<br>")}
+      </blockquote>
+    </div>
+    `;
   }
 });
 registerOnLoad("tab-weapons-search", (element) => {

@@ -1,5 +1,13 @@
+# Day 7
+
+- NOTE: Battle continues, people nearly falling, tide turning
+- ERROR: \<CONNECTION FAILED\>, RETRYING..., \<CONNECTION FAILED\>
+- ERROR: \<WEAPON DROPPED\>
+- WARN: \<TARGET LOCK\> Siren: Count 2, Chaos Engine: Count 2
+
 # Day 6
 
+- KRONOS: Warped us to the Heretics near their train.
 - KRONOS: Restored all characters to full health
 - KRONOS: Is a planetary protection device
 - KRONOS: Found

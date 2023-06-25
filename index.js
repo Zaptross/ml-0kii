@@ -284,7 +284,10 @@ function jsonToDivsRecursive(jsonObject, depth = 0) {
   return divs.join("\r\n");
 }
 
+const tabs = [];
+
 function registerTab(tabId, element) {
+  tabs.push(element);
   const tabsSelector = document.getElementById("tabs-selector");
   const tabName = tabId.replace("tab-", "").toUpperCase();
   const classes = `section-tab ${
@@ -576,6 +579,12 @@ function depthFirstFlatten(array) {
 }
 
 async function touchOfTheWarp(delayMs) {
+  for (const tab of tabs) {
+    if (tab.id !== localStorage.getItem("last-tab")) {
+      tab.innerHTML = "";
+    }
+  }
+
   const nodes = depthFirstFlatten(arrayifyCollection(document.body.children));
 
   setPrettyReWrite("pageTitle", "HERETEK DETECTED: EXCOMMUNICATUS");

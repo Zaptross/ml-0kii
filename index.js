@@ -148,7 +148,7 @@ skills.stats = {
   [skillsEnum.str]: 29,
   [skillsEnum.t]: 40,
   [skillsEnum.ag]: 32,
-  [skillsEnum.int]: 37,
+  [skillsEnum.int]: 42,
   [skillsEnum.per]: 39,
   [skillsEnum.wp]: 36,
   [skillsEnum.fel]: 25,
@@ -180,7 +180,7 @@ skills.skills = {
   "Trade (Scrimshawer)": calcStat(skillsEnum.ag, 1),
   "Common Lore (Machine Cult)": calcStat(skillsEnum.int, 1),
   "Common Lore (Tech)": calcStat(skillsEnum.int, 1),
-  "Tech Use": calcStat(skillsEnum.int, 1, 2),
+  "Tech Use": calcStat(skillsEnum.int, 1, 3),
 };
 
 const traits = {
@@ -193,6 +193,34 @@ const traits = {
   "Pistol Training (Las)": "Can wield las pistols",
   Wary: "All hivers get +1 Initiative rolls",
   "Electro Graft Use": "+10 Common Lore, Inquiry, Tech-Use using datapoint",
+  "Maglev Grace":
+    "By long hours of rote learning, you have mastered one of the miracles of the Omnissiah. By spending a Half Action, you may hover 20–30 centimetres off the ground for a number of minutes equal to 1d10 plus your Toughness Bonus. You may use this to slow your fall while falling, taking 1d10+3 Impact Damage.",
+  "Independent Targeting": "Can fire at two targets more than 10m apart",
+};
+
+const weapons = {
+  "Las Pistol": {
+    class: "Pistol",
+    damage: "1d10+2",
+    damageType: "E",
+    range: 30,
+    clip: 30,
+    penetration: 0,
+    rateOfFire: "S/-/-",
+    reload: "Full",
+    special: "Reliable",
+  },
+  "Arcadia Pattern Hellgun": {
+    class: "Basic Las",
+    damage: "1d10+5",
+    damageType: "E",
+    range: 110,
+    clip: 40,
+    penetration: 3,
+    rateOfFire: "S/3/*",
+    reload: "Full",
+    special: "Reliable, *Full(5), Overheat 80",
+  },
 };
 
 function randomFrom(array, length = 1) {
@@ -413,6 +441,40 @@ registerOnLoad("tab-traits-search", (element) => {
   element.focus();
 });
 
+registerOnLoad("tab-weapons", async (element) => {
+  registerTab("tab-weapons", element);
+});
+registerOnLoad("weapons-list", async (element) => {
+  for (const [name, description] of Object.entries(weapons).sort((a, b) => {
+    console.log(Object.entries(weapons).length);
+    const upperA = a[0].toUpperCase();
+    const upperB = b[0].toUpperCase();
+    if (upperA < upperB) {
+      return -1;
+    } else if (upperA > upperB) {
+      return 1;
+    } else {
+      return 0;
+    }
+  })) {
+    element.innerHTML += `
+    <p>
+      <strong>${name}</strong>:
+        <blockquote>${Object.keys(description)
+          .map((x) => `<strong>${x}</strong>: ${description[x]}`)
+          .join("<br>")}
+        </blockquote>
+    </p>`;
+  }
+});
+registerOnLoad("tab-weapons-search", (element) => {
+  element.addEventListener(
+    "input",
+    onInputSearch("tab-weapons-search", "weapons-list")
+  );
+  element.focus();
+});
+
 /**
  * @param {string} raw
  */
@@ -619,3 +681,15 @@ function cheekyLilHash(input) {
 
   return raw.map((x) => String.fromCharCode(x % 1001)).join("");
 }
+
+function doIfIsDev() {
+  if (
+    window.location.href.includes("127.0.0.1") ||
+    window.location.href.includes("localhost")
+  ) {
+    document.getElementById("window-name").innerHTML = "ML-0KII DEV";
+    console.log("ML-0KII DEV MODE");
+  }
+}
+
+doIfIsDev();

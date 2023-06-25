@@ -197,3 +197,16 @@ button {
     transform: rotate(180deg);
   }
 }
+
+blockquote {
+  text-align: inherit;
+  padding-left: 1rem;
+  border-left: solid 0.5rem green;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 1rem;
+}

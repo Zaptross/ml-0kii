@@ -1,3 +1,26 @@
+# Day 6
+
+- KRONOS: Restored all characters to full health
+- KRONOS: Is a planetary protection device
+- KRONOS: Found
+- WARN: \<TRAIN BRAKES FAILED DUE TO HEAT\>
+- WARN: \<TRAIN SPEED EXCEEDING SAFETY REGULATIONS\>
+- OBJECTIVE: Follow the cultists
+- NOTE: Chaos Train leaving the station
+- NOTE: Instructed to bring down the shield protecting the Saint
+- NOTE: Instructed to bring down the shield protecting the inner sanctum
+
+# Day 5
+
+- NOTE: Found the chapel, in a massive cathedral
+- LEARN: Necron Xenotech Psychic Suppressor
+- NOTE: Fought off the Chaos Defilers
+- NOTE: Caught by Sisters of Battle
+- WARN: \<FALLING\>
+- PRIORITY: Repair Thunderhawk engine
+- WARN: Thunkderhawk shot down by Chaos Defiler
+- OBJECTIVE: Protect the Inquisitor and the Saint
+
 # Day 4
 
 - NOTE: Flying to chapel, discovered the chapel covered in multiple Chaos Defilers

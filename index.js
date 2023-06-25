@@ -122,6 +122,8 @@ const abilities = {
             <tr><td>Hard (-20)</td><td>Land speeder engine, lascannon charge pack, servitor</td></tr>
             <tr><td>Very Hard (-30)</td><td>Industrial press, cogitator engine, xenos tech</td></tr>
         </table>`,
+  "Maglev Grace":
+    "By long hours of rote learning, you have mastered one of the miracles of the Omnissiah. By spending a Half Action, you may hover 20–30 centimetres off the ground for a number of minutes equal to 1d10 plus your Toughness Bonus. You may use this to slow your fall while falling, taking 1d10+3 Impact Damage.",
 };
 
 const skillsEnum = {
@@ -193,8 +195,6 @@ const traits = {
   "Pistol Training (Las)": "Can wield las pistols",
   Wary: "All hivers get +1 Initiative rolls",
   "Electro Graft Use": "+10 Common Lore, Inquiry, Tech-Use using datapoint",
-  "Maglev Grace":
-    "By long hours of rote learning, you have mastered one of the miracles of the Omnissiah. By spending a Half Action, you may hover 20–30 centimetres off the ground for a number of minutes equal to 1d10 plus your Toughness Bonus. You may use this to slow your fall while falling, taking 1d10+3 Impact Damage.",
   "Independent Targeting": "Can fire at two targets more than 10m apart",
 };
 

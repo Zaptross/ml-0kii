@@ -153,6 +153,11 @@ input {
   font-family: monospace;
 }
 
+input:focus {
+  border-color: #99ff99;
+  outline: #99ff99;
+}
+
 button {
   cursor: pointer;
 }
